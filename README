@@ -1,0 +1,4 @@
+I'm bored to define the usual methods whenever rubying, so that's a gem containing some utilities (some mine, some of Rails, some taken from the world).
+I will add more methods when I need it.
+
+Just include the classes/modules you need and make new rainbows with its methods!

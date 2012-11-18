@@ -1,0 +1,7 @@
+Include
+  ruby-with <https://github.com/meh/ruby-with>
+  colorb <https://github.com/meh/colorb>
+  
+Implement
+  (to/from)_(json, xml)
+  Stack
