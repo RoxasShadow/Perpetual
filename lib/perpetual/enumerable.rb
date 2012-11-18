@@ -18,6 +18,11 @@
 #++
 module Enumerable
   
+  # Returns the division of the elements of the enumerable.
+  def divide
+    inject(:/)
+  end
+  
   # Returns true if the enumerable has more than 1 element.
   # Can be called with a block too, much like any?, so <tt>people.many? { |p| p.age > 26 }</tt> returns true if more than one person is over 26.
   def many?
@@ -32,9 +37,9 @@ module Enumerable
     end
   end
   
-  # Returns the sum of the elements of the enumerable.
-  def sum
-    inject(:+)
+  # Returns the multiplication of the elements of the enumerable.
+  def multiply
+    inject(:*)
   end
   
   # Returns the subtraction of the elements of the enumerable.
@@ -42,14 +47,9 @@ module Enumerable
     inject(:-)
   end
   
-  # Returns the multiplication of the elements of the enumerable.
-  def multiply
-    inject(:*)
-  end
-  
-  # Returns the division of the elements of the enumerable.
-  def divide
-    inject(:/)
+  # Returns the sum of the elements of the enumerable.
+  def sum
+    inject(:+)
   end
 
 end

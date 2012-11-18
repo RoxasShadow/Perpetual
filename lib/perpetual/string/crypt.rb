@@ -18,18 +18,6 @@
 #++
 module Crypt
 
-  # Returns the SHA1 hash of one or more strings that will be joined.
-  def self.sha1(*s)
-    require 'digest/sha1'
-    Digest::SHA1.hexdigest s.join
-  end
-
-  # Returns the MD5 hash of one or more strings that will be joined.
-  def self.md5(*s)
-    require 'digest/md5'
-    Digest::MD5.hexdigest s.join
-  end
-
   # Returns the base64 encoded hash of one or more strings that will be joined.
   def self.base64_encode(*s)
     require 'base64'
@@ -41,6 +29,18 @@ module Crypt
     require 'base64'
     Base64.decode64 h.join
   end
+
+  # Returns the MD5 hash of one or more strings that will be joined.
+  def self.md5(*s)
+    require 'digest/md5'
+    Digest::MD5.hexdigest s.join
+  end
+
+  # Returns the SHA1 hash of one or more strings that will be joined.
+  def self.sha1(*s)
+    require 'digest/sha1'
+    Digest::SHA1.hexdigest s.join
+  end
   
   class << self
     alias_method :to_sha1, :sha1
@@ -51,18 +51,6 @@ module Crypt
 end
 
 class String
-
-  # Returns the SHA1 hash of the string.
-  def sha1
-    Crypt::sha1 self
-  end
-  alias_method :to_sha1, :sha1
-  
-  # Returns the MD5 hash of the string.
-  def md5
-    Crypt::md5 self
-  end
-  alias_method :to_md5, :md5
   
   # Returns the base64 encoded hash of the string.
   def base64_encode
@@ -75,5 +63,17 @@ class String
   def base64_decode
     Crypt::base64_decode self
   end
+  
+  # Returns the MD5 hash of the string.
+  def md5
+    Crypt::md5 self
+  end
+  alias_method :to_md5, :md5
+
+  # Returns the SHA1 hash of the string.
+  def sha1
+    Crypt::sha1 self
+  end
+  alias_method :to_sha1, :sha1
   
 end

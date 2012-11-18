@@ -18,12 +18,6 @@
 #++
 class Fixnum
   
-  # Returns the English word for the number or a empty string if the number is not known. Supports number from 0-10.
-  def in_word
-    [ 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten' ][self] || ''
-  end
-  alias_method :in_words, :in_word
-  
   # Defines the methods +n?+ where n is each number from 0-10. Returns true if the number is itself in English.
   (1..10).each { |n|
    define_method "#{(n).in_word}?" do
@@ -35,5 +29,11 @@ class Fixnum
   def factorial
     self.one? ? 1 : self * (self - 1).factorial
   end
+  
+  # Returns the English word for the number or a empty string if the number is not known. Supports number from 0-10.
+  def in_word
+    [ 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten' ][self] || ''
+  end
+  alias_method :in_words, :in_word
   
 end

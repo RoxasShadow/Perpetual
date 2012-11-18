@@ -17,11 +17,22 @@
 # along with Perpetual.  If not, see <http://www.gnu.org/licenses/>.
 #++
 class String
+  
+  # Returns the character at the +position+.
+  def at(position)
+    self[position, 1].to_s
+  end
 
   # Returns true if the string contains only whitespaces or is empty.
   def blank?
     self !~ %r![^\s#{[0x3000].pack("U")}]!
   end
+  
+  # Truncates the string after a given length if text is longer than length.
+  def cut(limit)
+    self.match(%r{^(.{0,#{limit}})})[1]
+  end
+  alias_method :truncate, :cut
   
   # Returns the first character of the string or the first +limit+ characters.
   def first(limit = 1)
@@ -34,6 +45,11 @@ class String
     end
   end
   
+  # Returns the remaining of the string from the +position+.
+  def from(position)
+    self[position, -1].to_s
+  end
+  
   # Returns the last character of the string or the last +limit+ characters.
   def last(limit = 1)
     if limit == 0
@@ -44,38 +60,6 @@ class String
       self[(-limit)..-1]
     end
   end
-  
-  # Returns the beginning of the string up to the +position+
-  def to(position)
-    self[0..position].to_s
-  end
-  
-  # Returns the character at the +position+.
-  def at(position)
-    self[position, 1].to_s
-  end
-  
-  # Returns the remaining of the string from the +position+.
-  def from(position)
-    self[position, -1].to_s
-  end
-  
-  # Capitalizes all the single words in the string.
-  def titlecase
-    self.gsub(/\b('?[a-z])/) { $1.capitalize }
-  end
-  alias_method :titleize, :titlecase
-  
-  def titlecase!
-    self.gsub!(/\b('?[a-z])/) { $1.capitalize }
-  end
-  alias_method :titleize!, :titlecase!
-  
-  # Truncates the string after a given length if text is longer than length.
-  def cut(limit)
-    self.match(%r{^(.{0,#{limit}})})[1]
-  end
-  alias_method :truncate, :cut
   
   # Returns true if the string is a valid integer.
   def numeric?
@@ -92,5 +76,21 @@ class String
     self.gsub!(/<("[^"]*"|'[^']*'|[^'">])*>/, '')
   end
   alias_method :strip_tags!, :strip_html_tags!
+  
+  # Capitalizes all the single words in the string.
+  def titlecase
+    self.gsub(/\b('?[a-z])/) { $1.capitalize }
+  end
+  alias_method :titleize, :titlecase
+  
+  def titlecase!
+    self.gsub!(/\b('?[a-z])/) { $1.capitalize }
+  end
+  alias_method :titleize!, :titlecase!
+  
+  # Returns the beginning of the string up to the +position+
+  def to(position)
+    self[0..position].to_s
+  end
   
 end
